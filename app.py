@@ -167,7 +167,7 @@ with gr.Blocks(title=title, css=css_style) as demo:
         input_param_gif_width = gr.Slider(224, 1280, step =8, value =224, label="视频宽度（数值越大横向背景越多）" )
         input_param_gif_height = gr.Slider(256, 1280, step= 8, value=256,label="视频高度（数值越大纵向背景越多）")
     with gr.Row():
-        input_files = gr.Files(elem_id="fixed_size_img", label="图片合集（上传同一人在不同时期的照片，暂不支持补、删图，修改合集建议刷新或清除后重传）")
+        input_files = gr.Files(elem_id="fixed_size_img", label="图片合集（上传页暂不支持补、删图，修改合集建议刷新或清除后重传）")
         img_output = gr.Image(type="filepath", elem_id="fixed_size_img", label="视频结果")
     with gr.Row():
         btn_submit = gr.Button(value="一键生成", elem_id="blue_btn")
