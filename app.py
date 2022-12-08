@@ -89,12 +89,20 @@ def inference(input_files, input_param_gif_fps, input_param_gif_width, input_par
                 src_img = compress_input_img(src_img)
     
             # get face detection and landmark result
-            # raw_result = face_detection_func(src_img_path)
-            face_detection_func = pipeline(Tasks.face_detection, 'damo/cv_resnet50_face-detection_retinaface')
-            raw_result = face_detection_func(src_img)
-            box_ldmk_str = ' '.join(str(x) for x in list(raw_result.values())[1][0]) \
-            + ' ' + ' '.join(str(list(raw_result.values())[2][0][x*2]) for x in range(5)) \
-            + ' ' + ' '.join(str(list(raw_result.values())[2][0][x*2+1]) for x in range(5))
+            facial_landmark_confidence_func = pipeline(Tasks.facial_landmark_confidence, 'damo/cv_manual_facial-landmark-confidence_flcm')
+            raw_result = facial_landmark_confidence_func(src_img)
+            if raw_result is None:
+                continue
+            
+            if float(raw_result['scores'][0]) < (1 - 0.145) :
+                print('landmark quality fail...')
+                continue
+            # import pdb;pdb.set_trace()
+            
+            box_ldmk_str = ' '.join(str(x) for x in raw_result['boxes'][0]) \
+            + ' ' + ' '.join(str(raw_result['keypoints'][0][x*2]) for x in range(5)) \
+            + ' ' + ' '.join(str(raw_result['keypoints'][0][x*2+1]) for x in range(5))
+
             
             # if you want to show the result, you can run
             if is_local_debug :
