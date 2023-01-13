@@ -159,7 +159,7 @@ with gr.Blocks(title=title, css=css_style) as demo:
                       font-size: 1.75rem;
                     "
                   >
-                    <h1 style="font-family:  PingFangSC; font-weight: 500; font-size: 32px; margin-bottom: 7px;">
+                    <h1 style="font-family:  PingFangSC; font-weight: 500; line-height: 1.5em; font-size: 32px; margin-bottom: 7px;">
                       时光相册
                     </h1>
                   </div>
