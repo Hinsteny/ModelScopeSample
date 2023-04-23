@@ -89,7 +89,7 @@ def inference(input_files, input_param_gif_fps, input_param_gif_width, input_par
                 src_img = compress_input_img(src_img)
     
             # get face detection and landmark result
-            facial_landmark_confidence_func = pipeline(Tasks.facial_landmark_confidence, 'damo/cv_manual_facial-landmark-confidence_flcm')
+            facial_landmark_confidence_func = pipeline(Tasks.face_2d_keypoints, 'damo/cv_manual_facial-landmark-confidence_flcm')
             raw_result = facial_landmark_confidence_func(src_img)
             if raw_result is None:
                 continue
@@ -190,7 +190,7 @@ with gr.Blocks(title=title, css=css_style) as demo:
         examples.append([example_id_names])
     
     print(examples)
-    examples = gr.Examples(examples=examples, inputs=input_files, outputs=img_output, label="点击如下示例试玩", run_on_click=True)
+    examples = gr.Examples(examples=examples, inputs=input_files, outputs=img_output, label="点击如下示例试玩", run_on_click=False)
     btn_submit.click(inference, inputs=[input_files, input_param_gif_fps, input_param_gif_width, input_param_gif_height], outputs=img_output)
     # btn_clear清除画布
 
