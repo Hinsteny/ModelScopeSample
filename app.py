@@ -31,7 +31,7 @@ def save_det_result(img_path, src_img, raw_result):
 ###########################################
 # 全局超参
 ###########################################
-online_example_dir = './images/'
+online_example_dir = '/images/'
 online_example_id = ['id1/', 'id2/']
 is_compress_input_img = True
 # 视频参数        

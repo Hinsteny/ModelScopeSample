@@ -1,0 +1,12 @@
+# Created by .ignore support plugin (hsz.mobi)
+.DS_Store
+*.iml
+.settings
+.project
+.classpath
+.svn
+.idea/
+.vscode/
+*/.itest/
+*.log
+result.png
